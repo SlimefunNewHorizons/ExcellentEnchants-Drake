@@ -15,6 +15,7 @@ import su.nightexpress.excellentenchants.enchantment.EnchantContext;
 import su.nightexpress.excellentenchants.enchantment.GameEnchantment;
 import su.nightexpress.excellentenchants.manager.EnchantManager;
 import su.nightexpress.nightcore.config.FileConfig;
+import su.nightexpress.excellentenchants.util.SlimefunCompat;
 import su.nightexpress.nightcore.util.Players;
 
 import java.nio.file.Path;
@@ -44,6 +45,10 @@ public class TelekinesisEnchant extends GameEnchantment implements BlockDropEnch
 
         return event.getItems().removeIf(drop -> {
             ItemStack itemStack = drop.getItemStack();
+            // Slimefun reemplaza el drop vanilla por su propio item mas adelante en el evento.
+            // Si lo quitamos de la lista, no le queda nada que reemplazar y el item deja de
+            // existir: asi se perdieron plantas de Cultivation y panales con NBT en DrakesCraft.
+            if (SlimefunCompat.isSlimefunItem(itemStack)) return false;
             if (Players.countItemSpace(player, itemStack) > 0) {
                 Players.addItem(player, itemStack);
                 return true;

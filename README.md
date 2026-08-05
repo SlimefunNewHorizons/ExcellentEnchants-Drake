@@ -1,4 +1,36 @@
 <p align="center">
+  <img src=".github/assets/banner.svg" alt="ExcellentEnchants · Drake Edition" width="760">
+</p>
+
+<p align="center">
+  <img alt="Licencia" src="https://img.shields.io/badge/licencia-GPL--3.0-6fe3a2?style=flat-square">
+  <img alt="Base" src="https://img.shields.io/badge/base-5.4.3-ffb347?style=flat-square">
+  <img alt="Adoptado" src="https://img.shields.io/badge/adoptado%20por-DrakesCraft-ffe289?style=flat-square">
+</p>
+
+> ### Adoptado por DrakesCraft
+>
+> Este fork lo mantiene **DrakesCraft** y va a seguir recibiendo cambios propios. El objetivo es
+> que los encantamientos convivan bien con **Slimefun**, que es el corazon del servidor.
+>
+> **Primer cambio · Telekinesis dejaba de destruir items de Slimefun.** El encantamiento quitaba
+> el drop de la lista de `BlockDropItemEvent` antes de que Slimefun lo reemplazara por su propio
+> item. Al no quedar nada que reemplazar, el item dejaba de existir: se perdieron plantas de
+> Cultivation y panales con NBT, y el jugador no recibia nada a cambio. Ahora los drops que
+> pertenecen a Slimefun se dejan pasar intactos.
+>
+> La deteccion va por reflexion (`util/SlimefunCompat`), asi que el plugin sigue funcionando
+> igual en servidores sin Slimefun.
+>
+> **Pendiente:** auditar los otros doce encantamientos que tocan bloques. Los que rompen varios
+> (`veinminer`, `treefeller`, `tunnel`, `blast_mining`) usan `player.breakBlock()`, que dispara
+> un `BlockBreakEvent` real y Slimefun lo recibe bien. Faltan por revisar `smelter` y `silk_chest`.
+>
+> Gracias a **nulli0n** por el trabajo original.
+
+---
+
+<p align="center">
   <img src="https://nightexpressdev.com/excellentenchants/banner.png">
 </p>
 
