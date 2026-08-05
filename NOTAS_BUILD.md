@@ -1,46 +1,47 @@
 # Compilar este fork
 
-## El bloqueo actual
-
-El HEAD de upstream **no compila para DrakesCraft**. El modulo `API` depende de:
-
-```xml
-<artifactId>paper-api</artifactId>
-<version>26.1.2.build.51-beta</version>
-```
-
-Paper para **Minecraft 26.1**, que exige **Java 25**. El servidor corre **Java 21**, de ahi el
-`cannot access org.bukkit.NamespacedKey` al compilar: el jar de paper-api tiene un class file
-mas nuevo del que entiende el compilador.
-
-Es la misma trampa que ya costo dos incidentes: **BentoBox 3.22** y **FastAsyncWorldEdit 2.15.3**
-quedaron deshabilitados por Java 25.
-
-Ademas, el pom pide `nightcore:2.15.3`, version que el repo de NightExpress **ya purgo**. La que
-corre en produccion es **2.16.4**, que si esta publicada.
-
-## Como desbloquearlo
-
-Dos caminos, y conviene decidirlo antes de invertir tiempo:
-
-1. **Buscar el tag de 5.4.3 que apunte a Paper 1.21.x.** El repo es multi-modulo y tiene un
-   modulo `spigot-1.21.11`; probablemente exista una rama o tag anterior al salto a 26.1.
-2. **Compilar solo con Java 25** y comprobar que el jar resultante siga siendo class file 65.
-   Poco probable: si la API es de 26.1, el bytecode saldra mas nuevo.
-
-**Antes de subir cualquier jar, verificar la version de class file.** Un jar de Java 25 en este
-servidor no falla al compilar: falla en silencio al arrancar.
+## Como compilar (resuelto el 2026-08-05)
 
 ```bash
-unzip -p ExcellentEnchants.jar su/nightexpress/.../TelekinesisEnchant.class | head -c 8 | xxd
-# los bytes 7 y 8 son la version: 0x41 = 65 = Java 21 · 0x45 = 69 = Java 25
+# 1. Una sola vez: instalar el Spigot remapeado en el Maven local.
+#    Sin esto el modulo spigot-1.21.11 no resuelve y el jar sale SIN las clases NMS,
+#    lo que hace que el plugin no registre ningun encantamiento al arrancar.
+java -jar BuildTools.jar --rev 1.21.11 --remapped
+
+# 2. Compilar solo los modulos que aplican a 1.21.11.
+#    Los modulos MC_1_21_10 y spigot-26.1.2 piden artefactos que no tenemos y no hacen falta.
+mvn package -DskipTests -pl API,spigot-1.21.11,Core
 ```
+
+El jar final se ensambla en **`target/ExcellentEnchants-5.4.3.jar`** (raiz del proyecto), no en
+`Core/target/`. El de Core no lleva las clases NMS: si se sube ese, el plugin arranca sin
+encantamientos.
+
+## Verificacion obligatoria antes de subir
+
+```bash
+python3 - <<'EOF'
+import zipfile
+z = zipfile.ZipFile('target/ExcellentEnchants-5.4.3.jar'); n = z.namelist()
+assert any('RegistryHack_1_21_11' in x for x in n), 'falta el NMS de 1.21.11'
+vs = {int.from_bytes(z.read(x)[6:8], 'big') for x in n if x.endswith('.class')}
+assert vs == {65}, f'class file incorrecto: {vs} (65 = Java 21)'
+print('jar OK')
+EOF
+```
+
+**Class file 65 = Java 21.** Un jar de Java 25 no falla al compilar: falla en silencio al
+arrancar. Ya paso con BentoBox 3.22 y FastAsyncWorldEdit 2.15.3.
+
+## Cambios respecto al upstream
+
+| Que | De | A | Por que |
+|---|---|---|---|
+| `paper-api` (API y Core) | `26.1.2.build.51-beta` | `1.21.11-R0.1-SNAPSHOT` | El upstream apunta a MC 26.1, que exige Java 25 |
+| `nightcore` | `2.15.3` | `2.16.4` | La 2.15.3 fue purgada del repo; la 2.16.4 es la que corre en produccion |
+| modulo `spigot-26.1.2` | presente | quitado de Core | No aplica y su artefacto no existe |
+| `SpigotEnchantsBootstrap` | referenciaba `mc_26_1_2` | quitado | Su modulo NMS ya no se compila |
 
 ## Estado del parche
 
-El arreglo de Telekinesis y `util/SlimefunCompat` **ya estan escritos y commiteados**. Solo falta
-poder compilar.
-
-Mientras tanto, en produccion el encantamiento esta desactivado moviendo su archivo a
-`plugins/ExcellentEnchants/enchants/_disabled_/telekinesis.yml`, que frena la perdida de items
-sin necesidad de tocar el jar.
+Telekinesis y `util/SlimefunCompat` estan aplicados y compilados.

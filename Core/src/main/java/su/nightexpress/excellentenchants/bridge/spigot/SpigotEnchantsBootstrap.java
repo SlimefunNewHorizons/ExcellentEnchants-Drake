@@ -14,7 +14,6 @@ import su.nightexpress.excellentenchants.enchantment.EnchantRegistry;
 import su.nightexpress.excellentenchants.nms.mc_1_21_10.RegistryHack_1_21_10;
 import su.nightexpress.excellentenchants.nms.mc_1_21_11.RegistryHack_1_21_11;
 import su.nightexpress.excellentenchants.nms.mc_1_21_8.RegistryHack_1_21_8;
-import su.nightexpress.excellentenchants.nms.mc_26_1_2.RegistryHack_26_1_2;
 import su.nightexpress.nightcore.util.Version;
 
 @NullMarked
@@ -25,7 +24,6 @@ public class SpigotEnchantsBootstrap {
             case MC_1_21_8 -> new RegistryHack_1_21_8(plugin);
             case MC_1_21_10 -> new RegistryHack_1_21_10(plugin);
             case MC_1_21_11 -> new RegistryHack_1_21_11(plugin);
-            case MC_26_1_2 -> new RegistryHack_26_1_2(plugin);
             default -> null;
         };
 
