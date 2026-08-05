@@ -45,3 +45,14 @@ arrancar. Ya paso con BentoBox 3.22 y FastAsyncWorldEdit 2.15.3.
 ## Estado del parche
 
 Telekinesis y `util/SlimefunCompat` estan aplicados y compilados.
+
+## Dependencias ancladas
+
+`libs/` guarda `nightcore-2.16.4.jar`, la misma version que corre en produccion. Existe porque
+NightExpress **purgo la 2.15.3** que pedia el pom original y el proyecto dejo de compilar solo.
+Si el repositorio remoto vuelve a fallar:
+
+```bash
+mvn install:install-file -Dfile=libs/nightcore-2.16.4.jar \
+  -DgroupId=su.nightexpress.nightcore -DartifactId=main -Dversion=2.16.4 -Dpackaging=jar
+```
