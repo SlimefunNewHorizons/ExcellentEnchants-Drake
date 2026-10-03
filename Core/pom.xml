@@ -28,7 +28,8 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.11-R0.1-SNAPSHOT</version>
+            <!-- Keep the port honest: this branch targets the staged Paper 26.2 API. -->
+            <version>26.2.build.129-stable</version>
             <scope>provided</scope>
         </dependency>
 
@@ -47,19 +48,7 @@
 
         <dependency>
             <groupId>su.nightexpress.excellentenchants</groupId>
-            <artifactId>spigot-1.21.11</artifactId>
-            <version>5.4.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>su.nightexpress.excellentenchants</groupId>
-            <artifactId>MC_1_21_10</artifactId>
-            <version>5.4.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>su.nightexpress.excellentenchants</groupId>
-            <artifactId>MC_1_21_8</artifactId>
+            <artifactId>spigot-26.1.2</artifactId>
             <version>5.4.3</version>
         </dependency>
 

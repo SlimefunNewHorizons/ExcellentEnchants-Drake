@@ -21,7 +21,8 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>1.21.11-R0.1-SNAPSHOT</version>
+            <!-- Season 2 compiles against the same Paper API that staging runs. -->
+            <version>26.2.build.129-stable</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

@@ -232,7 +232,9 @@ public class RegistryHack_26_1_2 implements RegistryHack {
         this.setupDistribution(entry, settings, reference);
 
         // Return the bukkit mirror.
-        return CraftEnchantment.minecraftToBukkit(enchantment);
+        // Paper 26.2 exposes the Bukkit mirror through the registered holder.
+        // The prior 26.1.2 helper was removed with the registry API update.
+        return CraftEnchantment.minecraftHolderToBukkit(reference);
     }
 
     private void setupDistribution(EnchantCatalogEntry entry, DistributionSettings settings,

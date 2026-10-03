@@ -11,9 +11,7 @@ import su.nightexpress.excellentenchants.bridge.RegistryHack;
 import su.nightexpress.excellentenchants.enchantment.DistributionConfig;
 import su.nightexpress.excellentenchants.enchantment.EnchantCatalog;
 import su.nightexpress.excellentenchants.enchantment.EnchantRegistry;
-import su.nightexpress.excellentenchants.nms.mc_1_21_10.RegistryHack_1_21_10;
-import su.nightexpress.excellentenchants.nms.mc_1_21_11.RegistryHack_1_21_11;
-import su.nightexpress.excellentenchants.nms.mc_1_21_8.RegistryHack_1_21_8;
+import su.nightexpress.excellentenchants.nms.mc_26_1_2.RegistryHack_26_1_2;
 import su.nightexpress.nightcore.util.Version;
 
 @NullMarked
@@ -21,9 +19,9 @@ public class SpigotEnchantsBootstrap {
 
     public void bootstrap(EnchantsPlugin plugin) {
         RegistryHack registryHack = switch (Version.getCurrent()) {
-            case MC_1_21_8 -> new RegistryHack_1_21_8(plugin);
-            case MC_1_21_10 -> new RegistryHack_1_21_10(plugin);
-            case MC_1_21_11 -> new RegistryHack_1_21_11(plugin);
+            // Minecraft 26.1 through 26.2 share Paper's unversioned CraftBukkit
+            // package and the registry layout handled by this adapter.
+            case MC_26_1, MC_26_1_1, MC_26_1_2, MC_26_2 -> new RegistryHack_26_1_2(plugin);
             default -> null;
         };
 

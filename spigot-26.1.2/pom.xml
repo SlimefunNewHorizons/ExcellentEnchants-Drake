@@ -19,9 +19,25 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>26.1.2-R0.1-SNAPSHOT</version>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>26.2.build.129-stable</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <!-- Installed by the controlled port build from the local Paper 26.2 server jar. -->
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-server</artifactId>
+            <version>26.2.build.129-stable</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Paper's server jar delegates its codec types to this runtime library. -->
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>datafixerupper</artifactId>
+            <version>10.0.21</version>
             <scope>provided</scope>
         </dependency>
 
