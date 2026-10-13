@@ -296,7 +296,9 @@ public class EnchantManager extends AbstractManager<EnchantsPlugin> {
 
         this.explosions.put(entity.getUniqueId(), explosion);
 
-        return entity.getWorld().createExplosion(location, power, fire, destroy, entity);
+        // El proyectil puede haber sido eliminado antes del evento: su Location queda sin mundo.
+        Location target = location.getWorld() == null ? entity.getLocation() : location;
+        return entity.getWorld().createExplosion(target, power, fire, destroy, entity);
     }
 
     public void handleEnchantExplosion(EntityExplodeEvent event, LivingEntity entity) {
