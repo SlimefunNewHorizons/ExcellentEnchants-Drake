@@ -15,9 +15,10 @@ Funciona en Linux/macOS y en Git Bash de Windows (necesita JDK 21, JDK 25 para 2
 reactor completo SUCCESS con JDK 25.
 
 ## 2. Compilar
-- `main` (linea 26.x, Paper API 26.x = bytecode 69): **JDK 25** — `mvn -B package -DskipTests`
+- `main`: **JDK 25** para el reactor completo (el modulo spigot-26.1.2 lo exige) — `mvn -B package -DskipTests`.
+  Verificado: el jar sale con bytecode **65 (Java 21)** y con el NMS de 1.21.11 (apto para Dallas). Un jar con 69 NO sirve en Dallas.
 - Solo 1.21.11 con JDK 21 (ver `NOTAS_BUILD.md`): `mvn package -DskipTests -Dmaven.compiler.release=21 -pl API,spigot-1.21.11,Core`
-  (requiere que el pom apunte a `paper-api 1.21.11`; en `main` apunta a 26.x y con JDK 21 da "cannot access org.bukkit.plugin.Plugin").
+  (con JDK 21 el modulo spigot-26.1.2 no compila, por eso se limita con `-pl`).
 
 El jar final queda en `target/ExcellentEnchants-5.4.3.jar` (raiz), NO en `Core/target/`.
 
