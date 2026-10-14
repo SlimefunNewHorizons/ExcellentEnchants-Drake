@@ -1,0 +1,1 @@
+Build omitido: el modulo spigot-1.21.11 necesita org.spigotmc:spigot remapped-mojang (BuildTools), que el CI no tiene. Se compila en Nexus.
