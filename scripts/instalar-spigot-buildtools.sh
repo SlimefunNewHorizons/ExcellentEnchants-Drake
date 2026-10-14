@@ -8,10 +8,10 @@
 # Requisitos: JDK 21, git, ~3 GB libres. En Star usa el envoltorio de carga controlada:
 #   ~/ai-hub/scripts/build_seguro.sh 21 ~/buildtools bash scripts/instalar-spigot-buildtools.sh
 set -euo pipefail
-if [ "$#" -gt 0 ]; then VERSIONES=("$@"); else VERSIONES=(1.21.8 1.21.10 1.21.11); fi
+VERSIONES=("${@:-1.21.8 1.21.10 1.21.11}")
 mkdir -p "${HOME}/buildtools" && cd "${HOME}/buildtools"
 [ -f BuildTools.jar ] || curl -fsSL -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-for v in "${VERSIONES[@]}"; do
+for v in ${VERSIONES[@]}; do
   echo "== BuildTools $v"
   java -jar BuildTools.jar --rev "$v" --remapped --output-dir "${HOME}/buildtools/out"
 done
