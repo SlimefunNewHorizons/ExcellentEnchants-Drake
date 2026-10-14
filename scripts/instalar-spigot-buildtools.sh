@@ -2,13 +2,13 @@
 # Instala en ~/.m2 los Spigot "remapped-mojang" que necesitan los modulos NMS (MC_1_21_8, MC_1_21_10, spigot-1.21.11).
 # GitHub Actions no puede hacerlo (BuildTools tarda ~10 min por version y necesita ~2 GB), por eso este repo usa .github/ci-skip.
 #
-#   bash scripts/instalar-spigot-buildtools.sh            # 1.21.8 1.21.10 1.21.11
+#   bash scripts/instalar-spigot-buildtools.sh            # 1.21.8 1.21.10 1.21.11 26.1.2
 #   bash scripts/instalar-spigot-buildtools.sh 1.21.11    # solo una
 #
-# Requisitos: JDK 21, git, ~3 GB libres. Ejecutalo en tu PC / Nexus (Git Bash en Windows). Star solo si Nexus y Nova estan
+# Requisitos: JDK 21 (para 26.1.2 BuildTools exige JDK 25: lanzalo con JDK 25), git, ~3 GB libres. Ejecutalo en tu PC / Nexus (Git Bash en Windows). Star solo si Nexus y Nova estan
 # apagados y con ~/ai-hub/scripts/build_seguro.sh 21 ~/buildtools bash scripts/instalar-spigot-buildtools.sh
 set -euo pipefail
-if [ "$#" -gt 0 ]; then VERSIONES=("$@"); else VERSIONES=(1.21.8 1.21.10 1.21.11); fi
+if [ "$#" -gt 0 ]; then VERSIONES=("$@"); else VERSIONES=(1.21.8 1.21.10 1.21.11 26.1.2); fi
 mkdir -p "${HOME}/buildtools" && cd "${HOME}/buildtools"
 [ -f BuildTools.jar ] || curl -fsSL -o BuildTools.jar https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
 for v in "${VERSIONES[@]}"; do

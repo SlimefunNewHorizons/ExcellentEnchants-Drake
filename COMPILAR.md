@@ -8,9 +8,11 @@ apagados, y siempre con `~/ai-hub/scripts/build_seguro.sh` (un build a la vez, b
 
 ## 1. Una sola vez: instalar los Spigot remapeados en tu `~/.m2`
 ```bash
-bash scripts/instalar-spigot-buildtools.sh          # 1.21.8, 1.21.10 y 1.21.11 (~10 min cada una, ~3 GB)
+bash scripts/instalar-spigot-buildtools.sh          # 1.21.8, 1.21.10, 1.21.11 y 26.1.2 (~10 min cada una, ~4 GB)
+# OJO: Spigot 26.1.2 exige JDK 25 al correr BuildTools: `java25 -jar BuildTools.jar --rev 26.1.2 --remapped`
 ```
-Funciona en Linux/macOS y en Git Bash de Windows (necesita JDK 21 y git).
+Funciona en Linux/macOS y en Git Bash de Windows (necesita JDK 21, JDK 25 para 26.1.2, y git). Verificado en Nexus el 2026-10-14:
+reactor completo SUCCESS con JDK 25.
 
 ## 2. Compilar
 - `main` (linea 26.x, Paper API 26.x = bytecode 69): **JDK 25** — `mvn -B package -DskipTests`
