@@ -1,3 +1,9 @@
+<!-- credits:start -->
+> **Credits & license.** Port and maintenance by [JackStar6677-1](https://github.com/JackStar6677-1) and [DrakesCraft Labs](https://github.com/SlimefunNewHorizons). Original authors: [nulli0n](https://github.com/nulli0n), [Zenologia](https://github.com/Zenologia), [JosTheDude](https://github.com/JosTheDude), [MrMadaraUchiha667](https://github.com/MrMadaraUchiha667), [MrMadaraUchiha](https://github.com/MrMadaraUchiha), [gXLg](https://github.com/gXLg), [kforbro](https://github.com/kforbro), [tunagohan](https://github.com/tunagohan). Upstream license: **GNU General Public License v3.0** (see [LICENSE](LICENSE)). Details: [docs/UPSTREAM_ATTRIBUTION.md](docs/UPSTREAM_ATTRIBUTION.md) · Policy: [Rights & Attribution](https://github.com/SlimefunNewHorizons/.github/blob/main/RIGHTS_AND_ATTRIBUTION.md). Independent community project, not affiliated with or endorsed by the original authors or the official Slimefun team.
+>
+> **Créditos y licencia.** Port y mantenimiento por [JackStar6677-1](https://github.com/JackStar6677-1) y [DrakesCraft Labs](https://github.com/SlimefunNewHorizons). Autores originales: [nulli0n](https://github.com/nulli0n), [Zenologia](https://github.com/Zenologia), [JosTheDude](https://github.com/JosTheDude), [MrMadaraUchiha667](https://github.com/MrMadaraUchiha667), [MrMadaraUchiha](https://github.com/MrMadaraUchiha), [gXLg](https://github.com/gXLg), [kforbro](https://github.com/kforbro), [tunagohan](https://github.com/tunagohan). Licencia original: **GNU General Public License v3.0**. Detalle en [docs/UPSTREAM_ATTRIBUTION.md](docs/UPSTREAM_ATTRIBUTION.md).
+<!-- credits:end -->
+
 > ### 🏰 ¡Únete a la Comunidad Oficial de DrakesCraft!
 > 
 > * 🎮 **IP del Servidor**: `mc.drakescraft.cl` *(Java 1.21.11 & Bedrock)*
